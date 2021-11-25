@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590599124562096581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,14 +40,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590599124999967858}
-  - component: {fileID: 590599124999967757}
   - component: {fileID: 590599124999967860}
   - component: {fileID: 590599124999967756}
   - component: {fileID: 590599124999967758}
   - component: {fileID: 7280752513643992934}
   - component: {fileID: 5659333393718678246}
   - component: {fileID: 1387087252038566574}
-  m_Layer: 0
+  - component: {fileID: 2658896654250345922}
+  m_Layer: 9
   m_Name: EnemySpaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,22 +70,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &590599124999967757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590599124999967857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4b0874c7d3308c4abf1c2bbfda5e8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shipController: {fileID: 590599124999967860}
-  _movementSystem: {fileID: 590599124999967756}
-  _weaponSystem: {fileID: 590599124999967758}
-  _battleIdentity: 2
 --- !u!114 &590599124999967860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +171,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _representation: {fileID: 1507206475712916754}
+--- !u!114 &2658896654250345922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590599124999967857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf38e17d7d68d745b2d074296b2b8ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipController: {fileID: 590599124999967860}
+  _movementSystem: {fileID: 590599124999967756}
+  _weaponSystem: {fileID: 590599124999967758}
+  _battleIdentity: 2
 --- !u!1 &1507206475712916752
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507206475712916753}
   - component: {fileID: 1507206475712916754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,6 +277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LaserGun1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543782742246006012, guid: dcb1bf35503a2d340ab0e1e9d82bca8b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2543782742246006013, guid: dcb1bf35503a2d340ab0e1e9d82bca8b,
         type: 3}

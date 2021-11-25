@@ -4,9 +4,10 @@ using Gameplay.ShipSystems;
 using Gameplay.Weapons;
 using UnityEngine;
 
+
 namespace Gameplay.Spaceships
 {
-    public class Spaceship : MonoBehaviour, ISpaceship, IDamagable
+    public abstract class Spaceship : MonoBehaviour, ISpaceship, IDamagable
     {
         [SerializeField]
         private ShipController _shipController;
@@ -20,22 +21,29 @@ namespace Gameplay.Spaceships
         [SerializeField]
         private UnitBattleIdentity _battleIdentity;
 
-
         public MovementSystem MovementSystem => _movementSystem;
         public WeaponSystem WeaponSystem => _weaponSystem;
-
         public UnitBattleIdentity BattleIdentity => _battleIdentity;
 
-        private void Start()
+        ////Создаю делегат и событи для отслеживания умерших врагов
+        //public delegate void EnemyIsDead(int count);
+
+        //public static event EnemyIsDead EnemyDead;
+
+
+        protected virtual void Start()
         {
             _shipController.Init(this);
             _weaponSystem.Init(_battleIdentity);
         }
 
-        public void ApplyDamage(IDamageDealer damageDealer)
-        {
-            Destroy(gameObject);
-        }
 
+        //Изменил метод чтоб переопределить метод ApplyDamage в классе Enemy и Player
+        //public  void ApplyDamage(IDamageDealer damageDealer)
+        //{
+        //    EnemyDead?.Invoke(1); // Вызовает событие после убийства врага
+        //    Destroy(gameObject);
+        //}
+        public abstract void ApplyDamage(IDamageDealer damageDealer);
     }
 }
