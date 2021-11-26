@@ -16,17 +16,16 @@ namespace Gameplay.Weapons
         [SerializeField]
         private float _cooldown;
 
+        //Добавляем свойство для подсчета и вывода на экран скорости снаряда
+        public float CoolDown { get => _cooldown; set => _cooldown = value; }
 
         private bool _readyToFire = true;
         private UnitBattleIdentity _battleIdentity;
-        
-        
         
         public void Init(UnitBattleIdentity battleIdentity)
         {
             _battleIdentity = battleIdentity;
         }
-        
         
         public void TriggerFire()
         {
@@ -37,7 +36,6 @@ namespace Gameplay.Weapons
             proj.Init(_battleIdentity);
             StartCoroutine(Reload(_cooldown));
         }
-
 
         private IEnumerator Reload(float cooldown)
         {

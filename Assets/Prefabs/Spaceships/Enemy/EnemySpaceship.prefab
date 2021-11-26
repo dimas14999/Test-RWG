@@ -187,6 +187,9 @@ MonoBehaviour:
   _movementSystem: {fileID: 590599124999967756}
   _weaponSystem: {fileID: 590599124999967758}
   _battleIdentity: 2
+  _itemDrop:
+  - {fileID: 3154752130756260161, guid: 6e8637cb471462e42a5904e440afec67, type: 3}
+  - {fileID: 1000523621811309903, guid: 50d12254171842a4abbe7796458f6102, type: 3}
 --- !u!1 &1507206475712916752
 GameObject:
   m_ObjectHideFlags: 0

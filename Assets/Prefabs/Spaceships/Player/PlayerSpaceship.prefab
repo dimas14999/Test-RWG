@@ -201,7 +201,10 @@ MonoBehaviour:
   _weaponSystem: {fileID: 6910651213156479312}
   _battleIdentity: 1
   _score: 1
-  _health: 100
+  _health: 150
+  _weapons:
+  - {fileID: 6910651213495973518}
+  - {fileID: 8983208217998367586}
 --- !u!50 &36096422
 Rigidbody2D:
   serializedVersion: 4
@@ -327,6 +330,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2543782742246006010, guid: dcb1bf35503a2d340ab0e1e9d82bca8b,
+        type: 3}
+      propertyPath: _cooldown
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcb1bf35503a2d340ab0e1e9d82bca8b, type: 3}
 --- !u!4 &8983208217998367589 stripped
@@ -418,6 +426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543782742246006010, guid: dcb1bf35503a2d340ab0e1e9d82bca8b,
+        type: 3}
+      propertyPath: _cooldown
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcb1bf35503a2d340ab0e1e9d82bca8b, type: 3}

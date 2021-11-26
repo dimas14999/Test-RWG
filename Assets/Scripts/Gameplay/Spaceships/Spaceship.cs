@@ -25,12 +25,6 @@ namespace Gameplay.Spaceships
         public WeaponSystem WeaponSystem => _weaponSystem;
         public UnitBattleIdentity BattleIdentity => _battleIdentity;
 
-        ////Создаю делегат и событи для отслеживания умерших врагов
-        //public delegate void EnemyIsDead(int count);
-
-        //public static event EnemyIsDead EnemyDead;
-
-
         protected virtual void Start()
         {
             _shipController.Init(this);
@@ -38,7 +32,7 @@ namespace Gameplay.Spaceships
         }
 
 
-        //Изменил метод чтоб переопределить метод ApplyDamage в классе Enemy и Player
+        //Изменил класс и метод чтоб переопределить метод ApplyDamage в классе Enemy и Player
         //public  void ApplyDamage(IDamageDealer damageDealer)
         //{
         //    EnemyDead?.Invoke(1); // Вызовает событие после убийства врага
