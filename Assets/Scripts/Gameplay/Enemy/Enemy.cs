@@ -5,14 +5,16 @@ using UnityEngine;
 public class Enemy : Spaceship
 {
 
-    //  Создаю делегат и событи для отслеживания умерших врагов
+    //  Create delegate and events to track dead enemies
     public delegate void EnemyIsDead(int count);
 
     public static event EnemyIsDead EnemyDead;
 
+    private const int SCORE = 1;
+
     [SerializeField] private GameObject[] _itemDrop;
 
-    // 50-ти процент появления бонуса 
+    // 50 percent of the appearance of the bonus
     private void DropItem()
     {
         var random = Random.Range(1, 100);
@@ -23,7 +25,7 @@ public class Enemy : Spaceship
     }
     public override void ApplyDamage(IDamageDealer damageDealer)
     {
-        EnemyDead?.Invoke(1); // Вызовает событие после убийства врага
+        EnemyDead?.Invoke(SCORE); // Triggers an event after killing an enemy
         DropItem();
         Destroy(gameObject);
     }

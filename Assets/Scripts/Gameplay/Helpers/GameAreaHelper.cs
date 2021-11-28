@@ -16,6 +16,8 @@ namespace Gameplay.Helpers
         
         public static bool IsInGameplayArea(Transform objectTransform, Bounds objectBounds)
         {
+            if (_camera == null) _camera = Camera.main;
+
             var camHalfHeight = _camera.orthographicSize;
             var camHalfWidth = camHalfHeight * _camera.aspect;
             var camPos = _camera.transform.position;
@@ -32,6 +34,26 @@ namespace Gameplay.Helpers
                 && (objectPos.y + objectBounds.extents.y > bottomBound);
 
         }
-        
+
+        // Check if movement is available within the camera
+        public static bool IsInGameplayAreaPlayer(Transform objectTransform, Bounds objectBounds, float deltaX)
+        {
+            if (_camera == null) _camera = Camera.main;
+
+            var camHalfHeight = _camera.orthographicSize;
+            var camHalfWidth = camHalfHeight * _camera.aspect;
+            var camPos = _camera.transform.position;
+            var leftBound = camPos.x - camHalfWidth;
+            var rightBound = camPos.x + camHalfWidth;
+
+            var objectPos = objectTransform.position;
+
+            if (deltaX > 0)
+                return objectPos.x + objectBounds.extents.x < rightBound;
+            else
+                return objectPos.x - objectBounds.extents.x > leftBound;
+           
+        }
+
     }
 }

@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 namespace UI.ScoreUI
 {
-    //Класс для отображения очков 
+    //Class for displaying score 
     public class Score : MonoBehaviour
     {
         [SerializeField] private Text _scoreText;
 
-        //Добавление очков в Text
+        private void Start()
+        {
+            _scoreText.text = "0";
+        }
+        //Adding score to Text
         public void AddScore(int score)
         {
             _scoreText.text = score.ToString();

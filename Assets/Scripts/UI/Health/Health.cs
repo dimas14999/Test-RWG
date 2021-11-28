@@ -7,7 +7,7 @@ namespace UI.HealthUI
     {
         [SerializeField] private Text _health;
 
-        //Добавление количества жизней в Text
+        //Adding Lives to Text
         public void OutputHealth(float health)
         {
             _health.text = health.ToString();

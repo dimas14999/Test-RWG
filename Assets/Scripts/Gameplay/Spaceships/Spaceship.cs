@@ -32,12 +32,7 @@ namespace Gameplay.Spaceships
         }
 
 
-        //Изменил класс и метод чтоб переопределить метод ApplyDamage в классе Enemy и Player
-        //public  void ApplyDamage(IDamageDealer damageDealer)
-        //{
-        //    EnemyDead?.Invoke(1); // Вызовает событие после убийства врага
-        //    Destroy(gameObject);
-        //}
+        //Changed the class and method to override the ApplyDamage method in the Enemy and Player classes
         public abstract void ApplyDamage(IDamageDealer damageDealer);
     }
 }
