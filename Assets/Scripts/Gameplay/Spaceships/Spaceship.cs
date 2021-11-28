@@ -4,9 +4,10 @@ using Gameplay.ShipSystems;
 using Gameplay.Weapons;
 using UnityEngine;
 
+
 namespace Gameplay.Spaceships
 {
-    public class Spaceship : MonoBehaviour, ISpaceship, IDamagable
+    public abstract class Spaceship : MonoBehaviour, ISpaceship, IDamagable
     {
         [SerializeField]
         private ShipController _shipController;
@@ -20,22 +21,18 @@ namespace Gameplay.Spaceships
         [SerializeField]
         private UnitBattleIdentity _battleIdentity;
 
-
         public MovementSystem MovementSystem => _movementSystem;
         public WeaponSystem WeaponSystem => _weaponSystem;
-
         public UnitBattleIdentity BattleIdentity => _battleIdentity;
 
-        private void Start()
+        protected virtual void Start()
         {
             _shipController.Init(this);
             _weaponSystem.Init(_battleIdentity);
         }
 
-        public void ApplyDamage(IDamageDealer damageDealer)
-        {
-            Destroy(gameObject);
-        }
 
+        //Changed the class and method to override the ApplyDamage method in the Enemy and Player classes
+        public abstract void ApplyDamage(IDamageDealer damageDealer);
     }
 }

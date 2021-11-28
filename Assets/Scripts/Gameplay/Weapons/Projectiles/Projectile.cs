@@ -20,7 +20,6 @@ namespace Gameplay.Weapons.Projectiles
         public UnitBattleIdentity BattleIdentity => _battleIdentity;
         public float Damage => _damage;
 
-        
 
         public void Init(UnitBattleIdentity battleIdentity)
         {
@@ -37,11 +36,13 @@ namespace Gameplay.Weapons.Projectiles
         private void OnCollisionEnter2D(Collision2D other)
         {
             var damagableObject = other.gameObject.GetComponent<IDamagable>();
+
             
             if (damagableObject != null 
                 && damagableObject.BattleIdentity != BattleIdentity)
             {
                 damagableObject.ApplyDamage(this);
+              
             }
         }
         
