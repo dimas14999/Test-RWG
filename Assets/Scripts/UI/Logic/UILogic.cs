@@ -17,7 +17,7 @@ namespace UI.Logic
         [SerializeField] private Energy _energyUI;
         [SerializeField] private DeadScreen _deadScreen;
 
-        private int _score;
+        private int _score = 0;
         private float _energy;
 
         private void OnEnable() 
@@ -31,6 +31,7 @@ namespace UI.Logic
         private void Start()
         {
             //Deactivating the defeat screen
+            _deadScreen.Score(0);
             _deadScreen.gameObject.SetActive(false);
             _deadScreen.gameObject.transform.DOScale(Vector3.zero, 0f);
         }
