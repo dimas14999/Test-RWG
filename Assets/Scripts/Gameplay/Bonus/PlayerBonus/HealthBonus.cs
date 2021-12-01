@@ -1,17 +1,18 @@
 ﻿using Gameplay.ShipSystems;
+using Gameplay.Spaceships;
+using Gameplay.Weapons;
 using UnityEngine;
 
 
 // Class for receiving health bonuses
 public class HealthBonus : MonoBehaviour, IBonus
 {
-    public ItemBonus Bonus { get => ItemBonus.Health;} 
 
-    [SerializeField] private float _addHealth = 5;
-    public float AddHealth { get => _addHealth; }
+    [SerializeField] private float _health = 10;
 
     [SerializeField] private MovementSystem _movementSystem;
 
+    private Spaceship _player;
     private void Update()
     {
         _movementSystem.LongitudinalMovement(Time.deltaTime);
@@ -20,12 +21,17 @@ public class HealthBonus : MonoBehaviour, IBonus
     // Player collision check
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var item = collision.gameObject.GetComponent<Player>();
+        _player = collision.gameObject.GetComponent<Spaceship>();
 
-        if (item == null) return;
-
-        item.TakeBonus(this);
-        Destroy(gameObject);
+        if (_player != null && _player.BattleIdentity == UnitBattleIdentity.Ally)
+        {
+            AddBonus();
+            Destroy(gameObject);
+        }
     }
 
+    public void AddBonus()
+    {  
+        _player.Health += _health;
+    }
 }

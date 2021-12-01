@@ -7,70 +7,57 @@ using DG.Tweening;
 
 namespace UI.Logic
 {
-    //The class responsible for the logic in the UI
     public class UILogic : MonoBehaviour
-
     {
 
-        [SerializeField] private Score _scoreUI;
+        [SerializeField] private DeadScreen _deadScreen;
         [SerializeField] private Health _healthUI;
         [SerializeField] private Energy _energyUI;
-        [SerializeField] private DeadScreen _deadScreen;
+        [SerializeField] private Score _scoreUI;
+        [SerializeField] private Player _player;
 
         private int _score = 0;
-        private float _energy;
 
         private void OnEnable() 
         {
-            Enemy.EnemyDead += OnEnemyIsDied;
-            Player.HealthDamage += OnPlayerDamage;
-            Player.PlayerEnergy += OnAddEnergy;
-            Player.PlayerDead += OnPlayerDead;
+            _player.HealthDamage += OnPlayerDamage;
+            _player.PlayerDead += OnPlayerDead;
         }
 
         private void Start()
         {
-            //Deactivating the defeat screen
-            _deadScreen.Score(0);
+            _deadScreen.DisplayScore(0);
             _deadScreen.gameObject.SetActive(false);
             _deadScreen.gameObject.transform.DOScale(Vector3.zero, 0f);
         }
+
         public void AddScore(int score)
         {
-            //Adding a score for killing an enemy
             _score += score;
-            _scoreUI.AddScore(_score);
-            _deadScreen.Score(_score);
+            _scoreUI.DisplayScore(_score);
+            _deadScreen.DisplayScore(_score);
         }
 
-        public void OnPlayerDead()
+        private void OnPlayerDead()
         {
-            //Activating the defeat screen
             _deadScreen.gameObject.SetActive(true);
             _deadScreen.gameObject.transform.DOScale(Vector3.one, 1f);
         }
 
-        //Displaying the rate of fire on the screen
-        public void OnAddEnergy(float energy)
+        public void AddEnergy(float energy)
         {
-            _energyUI.OutputEnergy(energy);
+            _energyUI.DisplayEnergy(energy);
         }
 
-        //Displaying lives on the screen
-        public void OnPlayerDamage(float health)
+        private void OnPlayerDamage(float health)
         {
-            _healthUI.OutputHealth(health);
+            _healthUI.DisplayHealth(health);
         }
-        public void OnEnemyIsDied(int score)
-        {
-            AddScore(score);
-        }
+
         private void OnDisable()
         {
-            Enemy.EnemyDead -= OnEnemyIsDied;
-            Player.HealthDamage -= OnPlayerDamage;
-            Player.PlayerEnergy -= OnAddEnergy;
-            Player.PlayerDead -= OnPlayerDead;
+            _player.HealthDamage -= OnPlayerDamage;
+            _player.PlayerDead -= OnPlayerDead;
         }
     }
 }

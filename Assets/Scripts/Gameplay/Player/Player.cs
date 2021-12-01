@@ -1,81 +1,41 @@
-﻿using Gameplay.Spaceships;
+﻿using Gameplay.ShipSystems;
+using Gameplay.Spaceships;
+using Gameplay.Spawners;
 using Gameplay.Weapons;
 using UnityEngine;
 
-//Player control class
-public class Player : Spaceship, IBonusDealer
+
+public class Player : Spaceship
 {
-    [SerializeField] private int _score = 1; 
+    [SerializeField] protected float _health = 150;
 
-    [SerializeField] private float _health = 150;
-
-    [SerializeField] private Weapon[] _weapons;
+    private Spawner[] _spawners;
+    public override float Health { get => _health; set { _health = value; HealthDamage?.Invoke(_health); } }
 
     //Add an event to update the player's health
     public delegate void PlayerIsDamage(float health);
-    public static event PlayerIsDamage HealthDamage;
-
-    //Add an event to update the player's projectile speed
-    public delegate void Energy(float energy);
-    public static event Energy PlayerEnergy;
+    public event PlayerIsDamage HealthDamage;
 
     public delegate void PlayerIsDead();
-    public static event PlayerIsDead PlayerDead;
-
-    private const float MaxCoolDown = 0.02f;
+    public event PlayerIsDead PlayerDead;
 
     protected override void Start()
     {
         base.Start();
         HealthDamage?.Invoke(_health);
-        foreach (var item in _weapons)
-        {
-            PlayerEnergy?.Invoke(item.CoolDown);
-        }
-        
+        _spawners = FindObjectsOfType<Spawner>();
     }
 
-    //I compare with what bonus the player faced
-    public void TakeBonus(IBonus bonus)
-    {
-        switch (bonus.Bonus)
-        {
-            case ItemBonus.Health:
-                {
-                    if (bonus is HealthBonus healthBonus)
-                    {
-                        _health += healthBonus.AddHealth;
-                        HealthDamage?.Invoke(_health);
-                    }
-                    break;
-                }
-            case ItemBonus.Energy:
-                {
-                    if (bonus is EnergyBonus energyBonus)
-                    {
-                        foreach (var item in _weapons)
-                        {
-
-                            if (item.CoolDown <= MaxCoolDown) return;
-                            item.CoolDown -= energyBonus.AddEnergy;
-                            PlayerEnergy?.Invoke(item.CoolDown);
-                        }
-                    }
-                    break;
-                }
-        }
-    }
-
-    // The method responsible for the player's damage and his further actions
     public override void ApplyDamage(IDamageDealer damageDealer)
     {
-        _health -= damageDealer.Damage;
-        HealthDamage?.Invoke(_health);
-        if (_health <= 0)
+        Health -= damageDealer.Damage;
+        if (Health <= 0)
         {
             PlayerDead?.Invoke();
+            foreach (var item in _spawners)
+                item.StopSpawn();
+
             Destroy(gameObject);
-            
         }
     }
 

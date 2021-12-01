@@ -8,8 +8,7 @@ namespace UI.EnergyUI
     {
         [SerializeField] private Text _energy;
 
-        //Adding rate of fire to Text
-        public void OutputEnergy(float energy)
+        public void DisplayEnergy(float energy)
         {
             _energy.text = energy.ToString();
         }

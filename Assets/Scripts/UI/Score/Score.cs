@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI.ScoreUI
 {
-    //Class for displaying score 
+
     public class Score : MonoBehaviour
     {
         [SerializeField] private Text _scoreText;
@@ -14,8 +14,8 @@ namespace UI.ScoreUI
         {
             _scoreText.text = "0";
         }
-        //Adding score to Text
-        public void AddScore(int score)
+
+        public void DisplayScore(int score)
         {
             _scoreText.text = score.ToString();
         }

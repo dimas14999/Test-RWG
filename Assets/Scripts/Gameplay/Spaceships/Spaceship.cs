@@ -21,6 +21,8 @@ namespace Gameplay.Spaceships
         [SerializeField]
         private UnitBattleIdentity _battleIdentity;
 
+        public virtual float Health { get; set; }
+
         public MovementSystem MovementSystem => _movementSystem;
         public WeaponSystem WeaponSystem => _weaponSystem;
         public UnitBattleIdentity BattleIdentity => _battleIdentity;

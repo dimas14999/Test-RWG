@@ -4,13 +4,8 @@ using UnityEngine;
 
 public interface IBonus 
 {
-  ItemBonus Bonus { get; }
+    void AddBonus();
     
 }
 
-public enum ItemBonus
-{
-    None,
-    Health,
-    Energy
-}
+

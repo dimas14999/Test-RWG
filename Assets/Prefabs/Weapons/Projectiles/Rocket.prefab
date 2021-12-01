@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 50
   _damage: 50
+  numberOfProjectiles: 6
+  projectile: {fileID: 1762535565141853620}
 --- !u!212 &1762535565141853617
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -11,7 +11,9 @@ namespace Gameplay.ShipSystems
         [SerializeField]
         private List<Weapon> _weapons;
 
+        public List<Weapon> Weapons => _weapons;
 
+        private const float MaxCoolDown = 0.02f;
 
         public void Init(UnitBattleIdentity battleIdentity)
         {
@@ -22,6 +24,14 @@ namespace Gameplay.ShipSystems
         public void TriggerFire()
         {
             _weapons.ForEach(w => w.TriggerFire());
+        }
+
+        public void DecreaseCoolDown(float energy)
+        {
+            _weapons.ForEach(e => {
+                if (e.CoolDown <= MaxCoolDown) return;
+                e.CoolDown -= energy;
+                });
         }
 
     }

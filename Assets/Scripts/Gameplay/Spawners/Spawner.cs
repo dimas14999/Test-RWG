@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UI.Logic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -50,8 +51,7 @@ namespace Gameplay.Spawners
             {
                 for (int i = 0; i < _object.Length; i++)
                 {
-
-                Instantiate(_object[Random.Range(0,_object.Length)], transform.position, transform.rotation, _parent);
+                    Instantiate(_object[Random.Range(0,_object.Length)], transform.position, transform.rotation, _parent);
                 }
                 yield return new WaitForSeconds(Random.Range(_spawnPeriodRange.x, _spawnPeriodRange.y));
             }
